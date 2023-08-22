@@ -10,6 +10,9 @@ class Player(pygame.sprite.Sprite):
         self.y_pos = y_pos
         self.state = RUNNING
 
+        self.velocity_y = 0  # Initial vertical velocity
+        self.gravity = 0.5  # Gravity strength
+
         self.load_running_animation()
 
         # character sprite
@@ -43,6 +46,12 @@ class Player(pygame.sprite.Sprite):
             self.current_sprite = 0
         
         self.image = self.sprites[self.current_sprite]
+
+        self.apply_gravity()
+        self.rect.y += self.velocity_y
+
+    def apply_gravity(self):
+        self.velocity_y += self.gravity 
 
     def load_running_animation(self):
         self.sprites = []

@@ -72,7 +72,7 @@ def main():
     run = True
     clock = pygame.time.Clock()
 
-    player = Player(TILE_X_OFFSET, HEIGHT/2 - TILE_Y_OFFSET)
+    player = Player(TILE_X_OFFSET, HEIGHT/2 - 200)
     RUNNING_PLAYER.add(player)
     frame = 0
 
