@@ -1,24 +1,24 @@
 import pygame
-from enum import Enum, auto
 
-class PlayerState(Enum) :
-    IDLE : auto()
-    RUNNING : auto()
-
+RUNNING = "running"
+IDLE = "idle"
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, x_pos, y_pos):
         super().__init__()
         self.x_pos = x_pos
         self.y_pos = y_pos
-        self.state: PlayerState = PlayerState.RUNNING
+        self.state = RUNNING
+
+        self.load_running_animation()
+
+        # character sprite
+        self.current_sprite = 0
+        self.image = self.sprites[self.current_sprite]
 
         # character position
         self.rect = self.image.get_rect()
         self.rect.topleft = [x_pos, y_pos]
-
-        # character animation
-        self.animation = self.load_animation()
 
 
     def x_pos(self):
@@ -27,14 +27,14 @@ class Player(pygame.sprite.Sprite):
     def y_pos(self):
         return self.y_pos
 
-    def set_state(self, state: PlayerState):
+    def set_state(self, state):
         if self.state != state:
             self.state = state
 
     def load_animation(self):
-        if self.state == PlayerState.RUNNING:
+        if self.state == RUNNING:
             self.load_running_animation()
-        elif self.state == PlayerState.IDLE:
+        elif self.state == IDLE:
             self.load_idle_animation()
 
         self.current_sprite += 1

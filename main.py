@@ -54,7 +54,7 @@ def main():
     clock = pygame.time.Clock()
 
     player = Player(TILE_X_OFFSET, HEIGHT/2 - TILE_Y_OFFSET)
-    # RUNNING_PLAYER.add(player)
+    RUNNING_PLAYER.add(player)
 
     while run:
         clock.tick(FPS)
@@ -62,6 +62,7 @@ def main():
             if event.type == pygame.QUIT:
                 run = False
 
+        player.load_animation()
         draw_window()
 
     pygame.quit()
